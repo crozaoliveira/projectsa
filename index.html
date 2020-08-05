@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <title>Web Finance</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style/css.css">
+  <link rel="stylesheet" href="style/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800">
+</head>
+
+<body id="Body" class="container-fluid">
+  <div class="BarraSuperior row justify-content-between">
+    <div class="Logo col-2">
+      Logo
+    </div>
+    <div class="Acoes col-4">
+      Ações
+    </div>
+  </div>
+  <div class="Menu row">
+    <div class="BarraLateral col-2">
+      <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
+        <a class="nav-link" href="/" data-toggle="pill" role="tab">Home</a>
+        <a class="nav-link" href="/cadastrocontas" data-toggle="pill" role="tab">Cadastrar Contas</a>
+        <a class="nav-link" href="/receita" data-toggle="pill" role="tab">Receitas</a>
+        <a class="nav-link" href="/despesa" data-toggle="pill" role="tab">Despesas</a>
+      </div>
+    </div>
+    <div class="ConteudoCentral col-10">
+      <div class="row justify-content-center">
+        <div class="col">
+          <div class="row" id="AcoesContas">
+            <a type="button" href="/cadastrocontas">Cadastrar Conta</a>
+            <input type="month" name="mesReferencia" id="mesReferencia">
+          </div>
+          <div id="QuadroSoma row">
+            <div class="QuadradoSoma col-md-4" id="SomaReceitas">
+              <a href="/receita">
+                <h2 class="TituloQuadrado">Receitas</h2>
+              </a>
+              <div class="Valor" id="ValorReceita"></div>
+            </div>
+            <div class="QuadradoSoma col-md-4" id="SomaDespesas">
+              <a href="/despesa">
+                <h2 class="TituloQuadrado">Despesas</h2>
+              </a>
+              <div class="Valor" id="ValorDespesa"></div>
+            </div>
+            <div class="QuadradoSoma col-md-4" id="SomaSaldo">
+                <h2 class="TituloQuadrado">Saldo</h2>
+              <div class="Valor" id="ValorSaldo"></div>
+            </div>
+          </div>
+          <div class="row justify-content-around">
+            <div class="Tabela col-5">
+              <table class="table table-dark">
+                <thead>
+                  <tr>
+                    <th>Receitas</th>
+                  </tr>
+                </thead>
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">Vencimento</th>
+                  </tr>
+                </thead>
+                <tbody id="CorpoReceitas">
+                  <!--<tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                  </tr>-->
+                </tbody>
+              </table>
+            </div>
+            <div class="Tabela col-5">
+              <table class="table table-dark">
+                <thead>
+                  <tr>
+                    <th>Despesas</th>
+                  </tr>
+                </thead>
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">Vencimento</th>
+                  </tr>
+                </thead>
+                <tbody id="CorpoDespesas">
+                  <!--<tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                  </tr>-->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-popup" id="myForm">
+    <form action="" method="post" id="formUpdate">
+      <div id="cd-cabecalho">
+        <h3>Editar Conta</h3>
+        <input type="button" value="Fechar" onclick="closeForm()">
+      </div>
+      <div id="cd-id">
+        <h5 for="identificacao">ID da Conta: <span id="id"></span></h5>
+      </div>
+      <div id="cd-descricao">
+        <label for="descricao">Descrição</label>
+        <input type="text" name="descricao" id="descricao" required>
+      </div>
+      <div id="cd-tipovl">
+        <div class="">
+          <p>Tipo de Conta:</p>
+          <div>
+            <input type="radio" name="tipoConta" id="despesa" value="D">
+            <label for="despesa">Despesa</label>
+          </div>
+          <div>
+            <input type="radio" name="tipoConta" id="receita" value="R">
+            <label for="receita">Receita</label>
+          </div>
+        </div>
+        <div>
+          <label for="valor">Valor:</label>
+          <input name="valor" id="valor" required>
+        </div>
+      </div>
+      <div id="cd-vencimento">
+        <label for="vencimento">Vencimento:</label>
+        <input type="date" name="vencimento" id="vencimento" required>
+      </div>
+      <div id="cd-btnCadastrar">
+
+      </div>
+    </form>
+  </div>
+  <footer class="py-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">2020 - Carlos Eduardo Roza de Oliveira</p>
+  </footer>
+
+  <script type="text/javascript" src="js/js.js"></script>
+  <script type="text/javascript" src="js/JQuery/jquery-3.5.1.js"></script>
+  <script type="text/javascript" src="js/Home.js"></script>
+  <!--<script type="text/javascript" src="js/Editar.js"></script>-->
+  <script type="text/javascript" src="node_modules\number-format.js\lib\format.min.js"></script>
+</body>
+
+</html>
