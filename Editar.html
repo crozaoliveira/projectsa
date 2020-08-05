@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <title>Web Finance - Editar</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style/css.css">
+    <link rel="stylesheet" href="style/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800">
+</head>
+
+<body id="Body" class="container-fluid">
+    <div class="BarraSuperior row justify-content-between">
+        <div class="Logo col-2">
+            Logo
+        </div>
+        <div class="Acoes col-4">
+            Ações
+        </div>
+    </div>
+    <div class="Menu row">
+        <div class="BarraLateral col-2">
+            <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
+                <a class="nav-link" href="/" data-toggle="pill" role="tab">Home</a>
+                <a class="nav-link" href="/cadastrocontas" data-toggle="pill" role="tab">Cadastrar Contas</a>
+                <a class="nav-link" href="/receita" data-toggle="pill" role="tab">Receitas</a>
+                <a class="nav-link" href="/despesa" data-toggle="pill" role="tab">Despesas</a>
+            </div>
+        </div>
+        <div class="ConteudoCentral col-10">
+            <div class="row justify-content-center">
+                <div class="col">
+                    <form action="" method="post">
+                        <div id="cd-cabecalho">
+                            <h1>Cadastro de Contas</h1>
+                        </div>
+                        <div id="cd-id">
+                            <label for="identificacao">ID da Conta:</label>
+                            <input type="number" name="identificacao" id="id">
+                        </div>
+                        <div id="cd-descricao">
+                            <label for="descricao">Descrição</label>
+                            <input type="text" name="descricao" id="descricao">
+                        </div>
+                        <div id="cd-tipovl">
+                            <div class="">
+                                <p>Tipo de Conta:</p>
+                                <div>
+                                    <input type="radio" name="tipoConta" id="despesa" value="D">
+                                    <label for="despesa">Despesa</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="tipoConta" id="receita" value="R">
+                                    <label for="receita">Receita</label>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="valor">Valor:</label>
+                                <input name="valor" id="valor">
+                            </div>
+                        </div>
+                        <div id="cd-vencimento">
+                            <label for="vencimento">Vencimento:</label>
+                            <input type="date" name="vencimento" id="vencimento">
+                        </div>
+                        <div id="cd-btnCadastrar">
+                            <input type="button" value="Confirmar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="py-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">2020 - Carlos Eduardo Roza de Oliveira</p>
+    </footer>
+
+    <script type="text/javascript" src="js/js.js"></script>
+    <script type="text/javascript" src="js/JQuery/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="js/Editar.js"></script>
+    <script type="text/javascript" src="node_modules\number-format.js\lib\format.min.js"></script>
+</body>
+
+</html>

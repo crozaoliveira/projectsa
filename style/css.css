@@ -1,0 +1,61 @@
+/* Geral */
+/* */
+
+/* Menu */
+.Menu{
+    height: 100%;
+}
+.BarraSuperior {
+    height: 50px;
+    background-color: black;
+}
+
+.Logo {
+    background-color: white;
+    font-size: 20px;
+}
+
+.BarraLateral {
+    background-color: violet;
+    height: 100%;
+}
+
+.Acoes {
+    background-color: tomato;
+    font-size: 20px;
+}
+
+/* */
+
+/* Login */
+
+#CaixaExterna{
+    flex-wrap: wrap;
+    height: 100%;
+}
+#CaixaInterna {
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+/* */
+
+/* index */
+
+.ConteudoCentral{
+    background-color: yellow;
+    height: 100%;
+}
+
+/* */
+
+/* ConteudoCentral */
+
+.Tabela{
+    background-color: blanchedalmond;
+}
+
+#myForm{
+    display: none;
+}
