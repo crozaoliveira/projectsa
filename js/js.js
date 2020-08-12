@@ -10,37 +10,47 @@ window.addEventListener('resize', function () {
     sizeOfThings();
 });
 
-function update(nr_conta){
+function update(nr_conta) {
     var descricao = document.getElementById('descricao').value;
     var valor = document.getElementById('valor').value;
     var vencimento = document.getElementById('vencimento').value;
     var tipoConta = document.getElementsByName('tipoConta')[0].checked;
 
-    if(tipoConta){
+    if (tipoConta) {
         tipoConta = 2;
     } else {
         tipoConta = 3;
     }
 
-    console.log('/update/' + descricao + '/' + valor + '/' + vencimento + '/' + tipoConta + '/' + nr_conta );
+    console.log('/update/' + descricao + '/' + valor + '/' + vencimento + '/' + tipoConta + '/' + nr_conta);
 
-    window.location.href = '/update/' + descricao + '/' + valor + '/' + vencimento + '/' + tipoConta + '/' + nr_conta ;
+    window.location.href = '/update/' + descricao + '/' + valor + '/' + vencimento + '/' + tipoConta + '/' + nr_conta;
 };
 
-function openForm(){
+function openForm() {
     document.getElementById("myForm").style.display = "block";
 }
 
-function closeForm(){
+function closeForm() {
     document.getElementById("myForm").style.display = "none";
 }
 
-function deleteById(nr_conta){
-    if(confirm('Deseja deletar esta conta?')){
+function deleteById(nr_conta) {
+    if (confirm('Deseja deletar esta conta?')) {
         window.location.href = '/delete/' + nr_conta;
     }
     window.location.href = '/';
 };
+
+function setMesReferencia() {
+    var d = new Date();
+    var month = format('00', (d.getMonth() + 1));
+    var year = d.getFullYear();
+    var campo = document.getElementById('mesReferencia');
+
+    campo.value = year + '-' + month ;
+
+}
 
 function moeda(valor) {
     var v = valor.toString();

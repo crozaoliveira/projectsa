@@ -49,40 +49,84 @@ app.get('/receita', function (req, res) {
 
 // Caminhos Requisições SQL //
 
-app.post('/home/sum', function (req, res) {
-    connection.query("SELECT id_tipo, SUM(vl_conta) AS sum_vl FROM contas GROUP BY id_tipo", function (err, result, field) {
-        res.json(result);
-    });
+app.post('/home/sum/:data?', function (req, res) {
+    if (req.params.data) {
+        connection.query("SELECT id_tipo, SUM(vl_conta) AS sum_vl FROM contas WHERE MONTH(DT_VENCIMENTO) = MONTH(?) AND YEAR(DT_VENCIMENTO) = YEAR(?) GROUP BY id_tipo",
+            [req.params.data, req.params.data], function (err, result, field) {
+                console.log(result);
+                res.json(result);
+            });
+    } else {
+        connection.query("SELECT id_tipo, SUM(vl_conta) AS sum_vl FROM contas WHERE MONTH(DT_VENCIMENTO) = MONTH(SYSDATE()) AND YEAR(DT_VENCIMENTO) = YEAR(SYSDATE()) GROUP BY id_tipo", function (err, result, field) {
+            console.log(result);
+            res.json(result);
+        });
+    }
 });
 
-app.post('/home/contas', function (req, res) {
-    connection.query("SELECT NR_CONTA, DS_CONTA, VL_CONTA, DATE_FORMAT(DT_VENCIMENTO, '%d/%m/%Y') AS DT_VENCIMENTO, DATE_FORMAT(DT_INCLUSAO, '%d/%m/%Y') AS DT_INCLUSAO, ID_TIPO FROM CONTAS WHERE IE_ATIVO = 'S' AND IE_DELETADO = 'N' AND MONTH(DT_VENCIMENTO) = MONTH(SYSDATE())", function (err, result, field) {
-        res.json(result);
-    });
+app.post('/home/contas/:data?', function (req, res) {
+    if (req.params.data) {
+        connection.query("SELECT NR_CONTA, DS_CONTA, VL_CONTA, DATE_FORMAT(DT_VENCIMENTO, '%d/%m/%Y') AS DT_VENCIMENTO, DATE_FORMAT(DT_INCLUSAO, '%d/%m/%Y') AS DT_INCLUSAO, ID_TIPO FROM CONTAS WHERE IE_ATIVO = 'S' AND IE_DELETADO = 'N' AND MONTH(DT_VENCIMENTO) = MONTH(?) AND YEAR(DT_VENCIMENTO) = YEAR(?)",
+            [req.params.data, req.params.data], function (err, result, field) {
+                res.json(result);
+            });
+    } else {
+        connection.query("SELECT NR_CONTA, DS_CONTA, VL_CONTA, DATE_FORMAT(DT_VENCIMENTO, '%d/%m/%Y') AS DT_VENCIMENTO, DATE_FORMAT(DT_INCLUSAO, '%d/%m/%Y') AS DT_INCLUSAO, ID_TIPO FROM CONTAS WHERE IE_ATIVO = 'S' AND IE_DELETADO = 'N' AND MONTH(DT_VENCIMENTO) = MONTH(SYSDATE()) AND YEAR(DT_VENCIMENTO) = YEAR(SYSDATE())", function (err, result, field) {
+            res.json(result);
+        });
+    }
 });
 
-app.post('/receitas/contas', function (req, res) {
-    connection.query("SELECT NR_CONTA, DS_CONTA, VL_CONTA, DATE_FORMAT(DT_VENCIMENTO, '%d/%m/%Y') AS DT_VENCIMENTO, DATE_FORMAT(DT_INCLUSAO, '%d/%m/%Y') AS DT_INCLUSAO, ID_TIPO FROM CONTAS WHERE IE_ATIVO = 'S' AND IE_DELETADO = 'N' AND MONTH(DT_VENCIMENTO) = MONTH(SYSDATE()) AND ID_TIPO = 3", function (err, result, field) {
-        res.json(result);
-    });
+app.post('/receitas/contas/:data?', function (req, res) {
+    if (req.params.data) {
+        connection.query("SELECT NR_CONTA, DS_CONTA, VL_CONTA, DATE_FORMAT(DT_VENCIMENTO, '%d/%m/%Y') AS DT_VENCIMENTO, DATE_FORMAT(DT_INCLUSAO, '%d/%m/%Y') AS DT_INCLUSAO, ID_TIPO FROM CONTAS WHERE IE_ATIVO = 'S' AND IE_DELETADO = 'N' AND MONTH(DT_VENCIMENTO) = MONTH(?) AND YEAR(DT_VENCIMENTO) = YEAR(?) AND ID_TIPO = 3",
+            [req.params.data, req.params.data], function (err, result, field) {
+                res.json(result);
+            });
+    } else {
+        connection.query("SELECT NR_CONTA, DS_CONTA, VL_CONTA, DATE_FORMAT(DT_VENCIMENTO, '%d/%m/%Y') AS DT_VENCIMENTO, DATE_FORMAT(DT_INCLUSAO, '%d/%m/%Y') AS DT_INCLUSAO, ID_TIPO FROM CONTAS WHERE IE_ATIVO = 'S' AND IE_DELETADO = 'N' AND MONTH(DT_VENCIMENTO) = MONTH(SYSDATE()) AND YEAR(DT_VENCIMENTO) = YEAR(SYSDATE()) AND ID_TIPO = 3", function (err, result, field) {
+            res.json(result);
+        });
+    }
 });
 
-app.post('/receitas/sum', function (req, res) {
-    connection.query("SELECT SUM(vl_conta) AS sum_vl FROM contas WHERE id_tipo = 3", function (err, result, field) {
-        res.json(result);
-    });
+app.post('/receitas/sum/:data?', function (req, res) {
+    if (req.params.data) {
+        connection.query("SELECT SUM(vl_conta) AS sum_vl FROM contas WHERE id_tipo = 3 AND MONTH(DT_VENCIMENTO) = MONTH(?) AND YEAR(DT_VENCIMENTO) = YEAR(?)",
+            [req.params.data, req.params.data], function (err, result, field) {
+                res.json(result);
+            });
+    } else {
+        connection.query("SELECT SUM(vl_conta) AS sum_vl FROM contas WHERE id_tipo = 3 AND MONTH(DT_VENCIMENTO) = MONTH(SYSDATE()) AND YEAR(DT_VENCIMENTO) = YEAR(SYSDATE())", function (err, result, field) {
+            res.json(result);
+        });
+    }
 });
 
-app.post('/despesas/contas', function (req, res) {
-    connection.query("SELECT NR_CONTA, DS_CONTA, VL_CONTA, DATE_FORMAT(DT_VENCIMENTO, '%d/%m/%Y') AS DT_VENCIMENTO, DATE_FORMAT(DT_INCLUSAO, '%d/%m/%Y') AS DT_INCLUSAO, ID_TIPO FROM CONTAS WHERE IE_ATIVO = 'S' AND IE_DELETADO = 'N' AND MONTH(DT_VENCIMENTO) = MONTH(SYSDATE()) AND ID_TIPO = 2", function (err, result, field) {
-        res.json(result);
-    });
+app.post('/despesas/contas/:data?', function (req, res) {
+    if (req.params.data) {
+        connection.query("SELECT NR_CONTA, DS_CONTA, VL_CONTA, DATE_FORMAT(DT_VENCIMENTO, '%d/%m/%Y') AS DT_VENCIMENTO, DATE_FORMAT(DT_INCLUSAO, '%d/%m/%Y') AS DT_INCLUSAO, ID_TIPO FROM CONTAS WHERE IE_ATIVO = 'S' AND IE_DELETADO = 'N' AND MONTH(DT_VENCIMENTO) = MONTH(?) AND YEAR(DT_VENCIMENTO) = YEAR(?) AND ID_TIPO = 2",
+            [req.params.data, req.params.data], function (err, result, field) {
+                res.json(result);
+            });
+    } else {
+        connection.query("SELECT NR_CONTA, DS_CONTA, VL_CONTA, DATE_FORMAT(DT_VENCIMENTO, '%d/%m/%Y') AS DT_VENCIMENTO, DATE_FORMAT(DT_INCLUSAO, '%d/%m/%Y') AS DT_INCLUSAO, ID_TIPO FROM CONTAS WHERE IE_ATIVO = 'S' AND IE_DELETADO = 'N' AND MONTH(DT_VENCIMENTO) = MONTH(SYSDATE()) AND YEAR(DT_VENCIMENTO) = YEAR(SYSDATE()) AND ID_TIPO = 2", function (err, result, field) {
+            res.json(result);
+        });
+    }
 });
 
-app.post('/despesas/sum', function (req, res) {
-    connection.query("SELECT SUM(vl_conta) AS sum_vl FROM contas WHERE id_tipo = 2", function (err, result, field) {
-        res.json(result);
-    });
+app.post('/despesas/sum/:data?', function (req, res) {
+    if (req.params.data) {
+        connection.query("SELECT SUM(vl_conta) AS sum_vl FROM contas WHERE id_tipo = 2 AND MONTH(DT_VENCIMENTO) = MONTH(?) AND YEAR(DT_VENCIMENTO) = YEAR(?)",
+            [req.params.data, req.params.data], function (err, result, field) {
+                res.json(result);
+            });
+    } else {
+        connection.query("SELECT SUM(vl_conta) AS sum_vl FROM contas WHERE id_tipo = 2 AND MONTH(DT_VENCIMENTO) = MONTH(SYSDATE()) AND YEAR(DT_VENCIMENTO) = YEAR(SYSDATE())", function (err, result, field) {
+            res.json(result);
+        });
+    }
 });
 
 app.post('/add-cadastro', function (req, res) {

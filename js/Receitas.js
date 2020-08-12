@@ -1,57 +1,88 @@
 window.onload = function () {
+    setMesReferencia()
     buscaContasBD();
     console.log('Aqui beleza');
 };
 
-function buscaContasBD() {
+function buscaContasBD(mesReferencia) {
 
-    var contas = new XMLHttpRequest();
-    contas.open('POST', '/receitas/contas', true);
-    contas.onreadystatechange = function () {
+    if (mesReferencia) {
 
-        if (contas.readyState == 4 && contas.status == 200) {
-            console.log(contas.responseText);
+        var urlConta = '/receitas/contas/' + mesReferencia;
 
-            var obj = JSON.parse(contas.responseText);
+        var contas = new XMLHttpRequest();
+        contas.open('POST', urlConta, true);
+        contas.onreadystatechange = function () {
 
-            var tabela = '';
+            if (contas.readyState == 4 && contas.status == 200) {
+                console.log(contas.responseText);
 
-            for (var x = 0; x < obj.length; x++) {
+                var obj = JSON.parse(contas.responseText);
 
-                tabela += '<tr>' +
-                    '<th scope="row">' + obj[x].NR_CONTA + '</th>' +
-                    '<td>' + obj[x].DS_CONTA + '</td>' +
-                    '<td>R$ ' + format("#,##0.00", obj[x].VL_CONTA) + '</td>' +
-                    '<td>' + obj[x].DT_VENCIMENTO + '</td>' +
-                    '<td>' + obj[x].DT_INCLUSAO + '</td>' +
-                    '</tr>';
+                var tabela = '';
+
+                for (var x = 0; x < obj.length; x++) {
+
+                    tabela += '<tr>' +
+                        '<th scope="row">' + obj[x].NR_CONTA + '</th>' +
+                        '<td>' + obj[x].DS_CONTA + '</td>' +
+                        '<td>R$ ' + format("#,##0.00", obj[x].VL_CONTA) + '</td>' +
+                        '<td>' + obj[x].DT_VENCIMENTO + '</td>' +
+                        '<td>' + obj[x].DT_INCLUSAO + '</td>' +
+                        '</tr>';
+                }
+
+                var soma = 0;
+
+                for (var x = 0; x < obj.length; x++) {
+                    soma += Number(obj[x].VL_CONTA);
+                }
             }
+
+            document.getElementById('CorpoContas').innerHTML = tabela;
+            document.getElementById('ValorSoma').innerHTML = format("#,##0.00", soma);
         }
 
-        document.getElementById('CorpoContas').innerHTML = tabela;
-    }
+        contas.send();
+        sumContas.send();
 
-    var sumContas = new XMLHttpRequest();
-    sumContas.open('POST', '/receitas/sum', true);
-    sumContas.onreadystatechange = function () {
+    } else {
+        var contas = new XMLHttpRequest();
+        contas.open('POST', '/receitas/contas', true);
+        contas.onreadystatechange = function () {
 
-        if (sumContas.readyState == 4 && contas.status == 200) {
-            console.log(sumContas.responseText);
+            if (contas.readyState == 4 && contas.status == 200) {
+                console.log(contas.responseText);
 
-            var objSum = JSON.parse(sumContas.responseText);
+                var obj = JSON.parse(contas.responseText);
 
-            var somaReceita = objSum[0].sum_vl;
+                var tabela = '';
 
-            document.getElementById('ValorSoma').innerHTML = format("#,##0.00", somaReceita);
+                for (var x = 0; x < obj.length; x++) {
 
-            /*var valorReceita = objSum[0].sum_vl;
-            var valorDespesa = objSum[1].sum_vl;*/
+                    tabela += '<tr>' +
+                        '<th scope="row">' + obj[x].NR_CONTA + '</th>' +
+                        '<td>' + obj[x].DS_CONTA + '</td>' +
+                        '<td>R$ ' + format("#,##0.00", obj[x].VL_CONTA) + '</td>' +
+                        '<td>' + obj[x].DT_VENCIMENTO + '</td>' +
+                        '<td>' + obj[x].DT_INCLUSAO + '</td>' +
+                        '</tr>';
+                }
+
+                var soma = 0;
+
+                for (var x = 0; x < obj.length; x++) {
+                    soma += Number(obj[x].VL_CONTA);
+                }
+            }
+
+            document.getElementById('CorpoContas').innerHTML = tabela;
+            document.getElementById('ValorSoma').innerHTML = format("#,##0.00", soma);
         }
 
+        contas.send();
+        sumContas.send();
     }
-
-    contas.send();
-    sumContas.send();
 
 };
 

@@ -8,15 +8,15 @@
   <link rel="stylesheet" href="style/css.css">
   <link rel="stylesheet" href="style/bootstrap/css/bootstrap.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;423&display=swap">
 </head>
 
 <body id="Body" class="container-fluid">
   <div class="BarraSuperior row justify-content-between">
     <div class="Logo col-2">
-      Logo
+      <a href="/"><img src="image/logo-empresa.png" alt="logo" height="50px"></a>
     </div>
     <div class="Acoes col-4">
-      Ações
     </div>
   </div>
   <div class="Menu row">
@@ -29,36 +29,40 @@
       </div>
     </div>
     <div class="ConteudoCentral col-10">
-      <div class="row justify-content-center">
-        <div class="col">
-          <div class="row" id="AcoesContas">
-            <a type="button" href="/cadastrocontas">Cadastrar Conta</a>
-            <input type="month" name="mesReferencia" id="mesReferencia">
+      <div class="row">
+
+        <div class="col container">
+
+          <div class="row justify-content-between" id="AcoesContas">
+            <a class="col-2 btn btn-outline-secondary" type="button" href="/cadastrocontas">Cadastrar Conta</a>
+            <input class="col-3" type="month" name="mesReferencia" id="mesReferencia">
           </div>
-          <div id="QuadroSoma row">
-            <div class="QuadradoSoma col-md-4" id="SomaReceitas">
+
+          <div class="QuadroSoma row justify-content-around">
+            <div class="col-md-3 QuadradoSoma" id="SomaReceitas">
               <a href="/receita">
                 <h2 class="TituloQuadrado">Receitas</h2>
               </a>
               <div class="Valor" id="ValorReceita"></div>
             </div>
-            <div class="QuadradoSoma col-md-4" id="SomaDespesas">
+            <div class="col-md-3 QuadradoSoma" id="SomaDespesas">
               <a href="/despesa">
                 <h2 class="TituloQuadrado">Despesas</h2>
               </a>
               <div class="Valor" id="ValorDespesa"></div>
             </div>
-            <div class="QuadradoSoma col-md-4" id="SomaSaldo">
-                <h2 class="TituloQuadrado">Saldo</h2>
+            <div class="col-md-3 QuadradoSoma" id="SomaSaldo">
+              <h2 class="TituloQuadrado">Saldo</h2>
               <div class="Valor" id="ValorSaldo"></div>
             </div>
           </div>
-          <div class="row justify-content-around">
-            <div class="Tabela col-5">
-              <table class="table table-dark">
+
+          <div class="CampoTabela row justify-content-around">
+            <div class="Tabela col-6">
+              <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th>Receitas</th>
+                    <th colspan="6" style="text-align: center;">Receitas</th>
                   </tr>
                 </thead>
                 <thead>
@@ -67,35 +71,19 @@
                     <th scope="col">Descrição</th>
                     <th scope="col">Valor</th>
                     <th scope="col">Vencimento</th>
+                    <th scope="col" colspan="2" style="text-align: center;">Ações</th>
                   </tr>
                 </thead>
                 <tbody id="CorpoReceitas">
-                  <!--<tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                  </tr>-->
+                  
                 </tbody>
               </table>
             </div>
-            <div class="Tabela col-5">
-              <table class="table table-dark">
+            <div class="Tabela col-6">
+              <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th>Despesas</th>
+                    <th colspan="6" style="text-align: center;">Despesas</th>
                   </tr>
                 </thead>
                 <thead>
@@ -104,31 +92,16 @@
                     <th scope="col">Descrição</th>
                     <th scope="col">Valor</th>
                     <th scope="col">Vencimento</th>
+                    <th scope="col" colspan="2" style="text-align: center;">Ações</th>
                   </tr>
                 </thead>
                 <tbody id="CorpoDespesas">
-                  <!--<tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                  </tr>-->
+
                 </tbody>
               </table>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -181,6 +154,20 @@
   <script type="text/javascript" src="js/Home.js"></script>
   <!--<script type="text/javascript" src="js/Editar.js"></script>-->
   <script type="text/javascript" src="node_modules\number-format.js\lib\format.min.js"></script>
+
+  <script>
+
+    var campoData = document.getElementById('mesReferencia');
+
+    campoData.addEventListener("change", function(){
+      var mes = campoData.value + '-01';
+
+      buscaContasBD(mes);
+
+    });
+
+  </script>
+
 </body>
 
 </html>

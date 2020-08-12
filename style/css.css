@@ -1,4 +1,9 @@
 /* Geral */
+a { color: inherit; } 
+body{
+    font-family: 'Josefin Sans', sans-serif !important;
+}
+
 /* */
 
 /* Menu */
@@ -7,36 +12,21 @@
 }
 .BarraSuperior {
     height: 50px;
-    background-color: black;
 }
 
 .Logo {
-    background-color: white;
-    font-size: 20px;
 }
 
 .BarraLateral {
-    background-color: violet;
     height: 100%;
+}
+
+.BarraLateral a {
+    color: #A8A8A8 !important;
 }
 
 .Acoes {
-    background-color: tomato;
     font-size: 20px;
-}
-
-/* */
-
-/* Login */
-
-#CaixaExterna{
-    flex-wrap: wrap;
-    height: 100%;
-}
-#CaixaInterna {
-    border: 1px solid #000;
-    border-radius: 5px;
-    padding: 20px;
 }
 
 /* */
@@ -44,18 +34,68 @@
 /* index */
 
 .ConteudoCentral{
-    background-color: yellow;
+    box-shadow: 0px 0px 8px 2px #A8A8A8;
+    background-color: #ffffffff;
     height: 100%;
+}
+
+#AcoesContas {
+    padding: 15px;
 }
 
 /* */
 
 /* ConteudoCentral */
 
+.CampoTabela{
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
 .Tabela{
-    background-color: blanchedalmond;
+    padding: 5px !important;
+    font-size: 15px;
 }
 
 #myForm{
     display: none;
 }
+
+/* Caixas Somas */
+
+.QuadroSoma{
+    padding: 15px;
+}
+
+.QuadradoSoma .Valor, .QuadradoSoma .TituloQuadrado{
+    text-align: center;
+}
+
+.QuadradoSoma{
+    padding: 5px;
+    height: 50%;
+    border: 2px solid black;
+    border-radius: 15px;
+}
+
+.QuadradoSoma .Valor{
+    font-size: 20px;
+}
+
+.QuadradoSoma, .QuadradoSoma a{
+    color: #000000 !important;
+}
+
+.QuadroSoma #SomaReceitas{
+    background-color: #03bb85;
+}
+
+.QuadroSoma #SomaDespesas{
+    background-color: #ffb6c1;
+}
+
+.QuadroSoma #SomaSaldo{
+    background-color: #d3d3d3;
+}
+
+/* */
