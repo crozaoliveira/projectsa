@@ -17,8 +17,11 @@ body{
     height: 50px;
 }
 
-.Logo {
-    
+.Logo a{
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    display: flex;
 }
 
 .BarraLateral {
@@ -36,6 +39,14 @@ body{
 #AcoesContas .btn-secondary{
     background-color: #A8A8A8;
     cursor: pointer;
+}
+
+/* */
+
+/* Opcoes Menu */
+
+#btn-menu a:hover{
+    transform: rotateZ('2px');
 }
 
 /* */

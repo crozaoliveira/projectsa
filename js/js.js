@@ -10,6 +10,10 @@ window.addEventListener('resize', function () {
     sizeOfThings();
 });
 
+function confirmaCadastro(){
+    alert('Cadastro realizado com sucesso!')
+}
+
 function update(nr_conta, pagina) {
     var descricao = document.getElementById('descricao').value;
     var valor = document.getElementById('valor').value;

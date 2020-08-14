@@ -116,9 +116,9 @@ function buscaContasBD(mesReferencia) {
 
             document.getElementById('CorpoDespesas').innerHTML = tabelaDespesa;
             document.getElementById('CorpoReceitas').innerHTML = tabelaReceita;
-            document.getElementById('ValorDespesa').innerHTML = format("#,##0.00", somaDespesa);
-            document.getElementById('ValorReceita').innerHTML = format("#,##0.00", somaReceita);
-            document.getElementById('ValorSaldo').innerHTML = format("#,##0.00", saldo);
+            document.getElementById('ValorDespesa').innerHTML = 'R$ ' + format("#,##0.00", somaDespesa);
+            document.getElementById('ValorReceita').innerHTML = 'R$ ' +format("#,##0.00", somaReceita);
+            document.getElementById('ValorSaldo').innerHTML = 'R$ ' +format("#,##0.00", saldo);
         }
 
         contas.send();

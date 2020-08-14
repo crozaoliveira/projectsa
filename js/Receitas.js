@@ -29,6 +29,8 @@ function buscaContasBD(mesReferencia) {
                         '<td>R$ ' + format("#,##0.00", obj[x].VL_CONTA) + '</td>' +
                         '<td>' + obj[x].DT_VENCIMENTO + '</td>' +
                         '<td>' + obj[x].DT_INCLUSAO + '</td>' +
+                        '<td><a href="#" onclick="updatePg(' + obj[x].NR_CONTA + ')"><span class="badge badge-primary">editar</span></td>' +
+                        '<td><a href="#" onclick="deleteById(' + obj[x].NR_CONTA + ', \'R\')"><span class="badge badge-danger">excluir</span></td>' +
                         '</tr>';
                 }
 
@@ -67,7 +69,7 @@ function buscaContasBD(mesReferencia) {
                         '<td>' + obj[x].DT_VENCIMENTO + '</td>' +
                         '<td>' + obj[x].DT_INCLUSAO + '</td>' +
                         '<td><a href="#" onclick="updatePg(' + obj[x].NR_CONTA + ')"><span class="badge badge-primary">editar</span></td>' +
-                        '<td><a href="#" onclick="deleteById(' + obj[x].NR_CONTA + ')"><span class="badge badge-danger">excluir</span></td>' +
+                        '<td><a href="#" onclick="deleteById(' + obj[x].NR_CONTA + ', \'R\')"><span class="badge badge-danger">excluir</span></td>' +
                         '</tr>';
                 }
 
