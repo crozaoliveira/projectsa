@@ -66,6 +66,8 @@ function buscaContasBD(mesReferencia) {
                         '<td>R$ ' + format("#,##0.00", obj[x].VL_CONTA) + '</td>' +
                         '<td>' + obj[x].DT_VENCIMENTO + '</td>' +
                         '<td>' + obj[x].DT_INCLUSAO + '</td>' +
+                        '<td><a href="#" onclick="updatePg(' + obj[x].NR_CONTA + ')"><span class="badge badge-primary">editar</span></td>' +
+                        '<td><a href="#" onclick="deleteById(' + obj[x].NR_CONTA + ')"><span class="badge badge-danger">excluir</span></td>' +
                         '</tr>';
                 }
 
@@ -81,8 +83,48 @@ function buscaContasBD(mesReferencia) {
         }
 
         contas.send();
-        sumContas.send();
     }
 
 };
 
+
+function updatePg(id_conta) {
+    buscaContasBDById(id_conta);
+    console.log('Aqui beleza');
+    openForm();
+};
+
+function buscaContasBDById(id_conta) {
+
+    var url = '/update-select/' + id_conta;
+
+    var conta = new XMLHttpRequest();
+    conta.open('POST', url, true);
+    conta.onreadystatechange = function () {
+
+        if (conta.readyState == 4 && conta.status == 200) {
+            console.log(conta.responseText);
+
+            var obj = JSON.parse(conta.responseText);
+
+            var id_conta = obj[0].NR_CONTA;
+            var desc_conta = obj[0].DS_CONTA;
+            var tipo_conta = obj[0].ID_TIPO;
+            var valor = obj[0].VL_CONTA;
+            var vencimento = obj[0].DT_VENCIMENTO;
+            var btn_update = '<a class="btn btn-secondary" onclick="update(' + obj[0].NR_CONTA + ', \'receita\')" href="#">Confirmar</a>';
+
+            document.getElementById('id').innerText = id_conta;
+            document.getElementById('descricao').value = desc_conta;
+            if (tipo_conta == 2) {
+                document.getElementsByName('tipoConta')[0].checked = true;
+            } else {
+                document.getElementsByName('tipoConta')[1].checked = true;
+            }
+            document.getElementById('valor').value = valor;
+            document.getElementById('vencimento').value = vencimento;
+            document.getElementById('cd-btnConfirmar').innerHTML = btn_update;
+        }
+    }
+    conta.send();
+};

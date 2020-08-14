@@ -92,7 +92,7 @@ function buscaContasBD(mesReferencia) {
                             '<td>R$ ' + format("#,##0.00", obj[x].VL_CONTA) + '</td>' +
                             '<td>' + obj[x].DT_VENCIMENTO + '</td>' +
                             '<td><a href="#" onclick="updatePg(' + obj[x].NR_CONTA + ')"><span class="badge badge-primary">editar</span></td>' +
-                            '<td><a href="#" onclick="deleteById(' + obj[x].NR_CONTA + ')"><span class="badge badge-danger">excluir</span></td>' +
+                            '<td><a href="#" onclick="deleteById(' + obj[x].NR_CONTA + ', \'H\')"><span class="badge badge-danger">excluir</span></td>' +
                             '</tr>';
 
                         somaDespesa += Number(obj[x].VL_CONTA);
@@ -104,7 +104,7 @@ function buscaContasBD(mesReferencia) {
                             '<td>R$ ' + format("#,##0.00", obj[x].VL_CONTA) + '</td>' +
                             '<td>' + obj[x].DT_VENCIMENTO + '</td>' +
                             '<td><a href="#" onclick="updatePg(' + obj[x].NR_CONTA + ')"><span class="badge badge-primary">editar</span></td>' +
-                            '<td><a href="#" onclick="deleteById(' + obj[x].NR_CONTA + ')"><span class="badge badge-danger">excluir</span></td>' +
+                            '<td><a href="#" onclick="deleteById(' + obj[x].NR_CONTA + ', \'H\')"><span class="badge badge-danger">excluir</span></td>' +
                             '</tr>';
 
                         somaReceita += Number(obj[x].VL_CONTA);
@@ -151,8 +151,8 @@ function buscaContasBDById(id_conta) {
             var tipo_conta = obj[0].ID_TIPO;
             var valor = obj[0].VL_CONTA;
             var vencimento = obj[0].DT_VENCIMENTO;
-            var btn_update = '<a onclick="update(' + obj[0].NR_CONTA + ')" href="#">Confirmar</a>';
-
+            var btn_update = '<a class="btn btn-secondary" onclick="update(' + obj[0].NR_CONTA + ', \'home\')" href="#">Confirmar</a>';
+        
             document.getElementById('id').innerText = id_conta;
             document.getElementById('descricao').value = desc_conta;
             if (tipo_conta == 2) {
@@ -162,7 +162,7 @@ function buscaContasBDById(id_conta) {
             }
             document.getElementById('valor').value = valor;
             document.getElementById('vencimento').value = vencimento;
-            document.getElementById('cd-btnCadastrar').innerHTML = btn_update;
+            document.getElementById('cd-btnConfirmar').innerHTML = btn_update;
         }
     }
     conta.send();

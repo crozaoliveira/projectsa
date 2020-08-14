@@ -13,59 +13,74 @@
 
 <body id="Body" class="container-fluid">
     <div class="BarraSuperior row justify-content-between">
-        <div class="Logo col-2">
-            Logo
+        <div class="Logo justify-content-center col-2">
+            <a href="/"><img src="image/logo-empresa.png" alt="logo" height="50px"></a>
         </div>
         <div class="Acoes col-4">
-            Ações
         </div>
     </div>
     <div class="Menu row">
         <div class="BarraLateral col-2">
-            <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
-                <a class="nav-link" href="/" data-toggle="pill" role="tab">Home</a>
-                <a class="nav-link" href="/cadastrocontas" data-toggle="pill" role="tab">Cadastrar Contas</a>
-                <a class="nav-link" href="/receita" data-toggle="pill" role="tab">Receitas</a>
-                <a class="nav-link" href="/despesa" data-toggle="pill" role="tab">Despesas</a>
+            <div id="btn-menu" class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
+                <a class="nav-link" href="/" data-toggle="pill" role="tab"><img src="image/home.png" alt="Home"
+                        width="15px"> Home</a>
+                <a class="nav-link" href="/cadastrocontas" data-toggle="pill" role="tab"><img
+                        src="image/wallet-plus.png" alt="Home" width="15px"> Cadastrar Contas</a>
+                <a class="nav-link" href="/receita" data-toggle="pill" role="tab"><img src="image/briefcase-upload.png"
+                        alt="Home" width="15px"> Receitas</a>
+                <a class="nav-link" href="/despesa" data-toggle="pill" role="tab"><img
+                        src="image/briefcase-download.png" alt="Home" width="15px"> Despesas</a>
             </div>
         </div>
-        <div class="ConteudoCentral col-10">
-            <div class="row justify-content-center">
-                <div class="col">
-                    <form action="/add-cadastro" method="POST">
-                        <div id="cd-cabecalho">
+        <div class="ConteudoCentral col-10" id="cc-cadastro">
+            <div class="row justify-content-center" id="cc-caixa">
+                <form class="col" action="/add-cadastro" method="POST">
+                    <div class="row justify-content-center" id="cd-cabecalho">
+                        <div class="col-10" id="text-cabecalho">
                             <h1>Cadastro de Contas</h1>
                         </div>
-                        <div id="cd-descricao">
-                            <label for="descricao">Descrição</label>
+                    </div>
+                    <div class="row justify-content-center" id="cd-descricao">
+                        <div class="col-2">
+                            <label for="descricao">Descrição: </label>
+                        </div>
+                        <div class="col-8">
                             <input type="text" name="descricao" id="descricao" required>
                         </div>
-                        <div id="cd-tipovl">
-                            <div class="">
-                                <p>Tipo de Conta:</p>
-                                <div>
-                                    <input type="radio" name="tipoConta" id="despesa" value="D" checked>
-                                    <label for="despesa">Despesa</label>
-                                </div>
-                                <div>
-                                    <input type="radio" name="tipoConta" id="receita" value="R">
-                                    <label for="receita">Receita</label>
-                                </div>
-                            </div>
-                            <div>
-                                <label for="valor">Valor:</label>
-                                <input name="valor" id="valor" required>
-                            </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-2">
+                            <label for="valor">Valor: R$</label>
                         </div>
-                        <div id="cd-vencimento">
-                            <label for="vencimento">Vencimento:</label>
+                        <div class="col-8">
+                            <input name="valor" id="valor" required>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center" id="cd-tipovl">
+                        <div class="col-2">
+                            <p>Tipo de Conta: </p>
+                        </div>
+                        <div class="col-4">
+                            <input type="radio" name="tipoConta" id="despesa" value="D">
+                            <label for="despesa">Despesa</label>
+                        </div>
+                        <div class="col-4">
+                            <input type="radio" name="tipoConta" id="receita" value="R" checked>
+                            <label for="receita">Receita</label>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center" id="cd-vencimento">
+                        <div class="col-2">
+                            <label for="vencimento">Vencimento: </label>
+                        </div>
+                        <div class="col-8">
                             <input type="date" name="vencimento" id="vencimento" required>
                         </div>
-                        <div id="cd-btnCadastrar">
-                            <input type="submit" value="Cadastrar">
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="row justify-content-center" id="cd-btnCadastrar">
+                        <input type="submit" value="Cadastrar">
+                    </div>
+                </form>
             </div>
         </div>
     </div>

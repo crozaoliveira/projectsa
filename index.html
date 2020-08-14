@@ -13,7 +13,7 @@
 
 <body id="Body" class="container-fluid">
   <div class="BarraSuperior row justify-content-between">
-    <div class="Logo col-2">
+    <div class="Logo justify-content-center col-2">
       <a href="/"><img src="image/logo-empresa.png" alt="logo" height="50px"></a>
     </div>
     <div class="Acoes col-4">
@@ -21,20 +21,24 @@
   </div>
   <div class="Menu row">
     <div class="BarraLateral col-2">
-      <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
-        <a class="nav-link" href="/" data-toggle="pill" role="tab">Home</a>
-        <a class="nav-link" href="/cadastrocontas" data-toggle="pill" role="tab">Cadastrar Contas</a>
-        <a class="nav-link" href="/receita" data-toggle="pill" role="tab">Receitas</a>
-        <a class="nav-link" href="/despesa" data-toggle="pill" role="tab">Despesas</a>
+      <div id="btn-menu" class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
+        <a class="nav-link" href="/" data-toggle="pill" role="tab"><img src="image/home.png" alt="Home" width="15px">
+          Home</a>
+        <a class="nav-link" href="/cadastrocontas" data-toggle="pill" role="tab"><img src="image/wallet-plus.png"
+            alt="Home" width="15px"> Cadastrar Contas</a>
+        <a class="nav-link" href="/receita" data-toggle="pill" role="tab"><img src="image/briefcase-upload.png"
+            alt="Home" width="15px"> Receitas</a>
+        <a class="nav-link" href="/despesa" data-toggle="pill" role="tab"><img src="image/briefcase-download.png"
+            alt="Home" width="15px"> Despesas</a>
       </div>
     </div>
-    <div class="ConteudoCentral col-10">
+    <div class="ConteudoCentral col-10" id="cc-home">
       <div class="row">
 
         <div class="col container">
 
           <div class="row justify-content-between" id="AcoesContas">
-            <a class="col-2 btn btn-outline-secondary" type="button" href="/cadastrocontas">Cadastrar Conta</a>
+            <a class="col-2 btn btn-secondary" type="button" href="/cadastrocontas">Cadastrar Conta</a>
             <input class="col-3" type="month" name="mesReferencia" id="mesReferencia">
           </div>
 
@@ -75,7 +79,7 @@
                   </tr>
                 </thead>
                 <tbody id="CorpoReceitas">
-                  
+
                 </tbody>
               </table>
             </div>
@@ -106,44 +110,56 @@
       </div>
     </div>
   </div>
-  <div class="form-popup" id="myForm">
-    <form action="" method="post" id="formUpdate">
-      <div id="cd-cabecalho">
-        <h3>Editar Conta</h3>
-        <input type="button" value="Fechar" onclick="closeForm()">
-      </div>
-      <div id="cd-id">
-        <h5 for="identificacao">ID da Conta: <span id="id"></span></h5>
-      </div>
-      <div id="cd-descricao">
-        <label for="descricao">Descrição</label>
-        <input type="text" name="descricao" id="descricao" required>
-      </div>
-      <div id="cd-tipovl">
-        <div class="">
-          <p>Tipo de Conta:</p>
-          <div>
+  <div class="form-popup container" id="myForm">
+    <div class="row align-items-center form-popup-center">
+      <form class="col" action="" method="post" id="formUpdate">
+        <div id="btn-fechar">
+          <a class="col-1" onclick="closeForm()"><img src="image/close-circle.png" alt="Fechar"></a>
+        </div>
+        <div class="row justify-content-between" id="cd-cabecalho">
+          <h3 class="col" style="text-align: center;">Editar Conta</h3>
+        </div>
+        <div class="row justify-content-start" id="cd-id">
+          <div class="col">
+            <h5 for="identificacao">#: <span id="id"></span></h5>
+          </div>
+        </div>
+        <div class="row justify-content-start" id="cd-descricao">
+          <div class="col">
+            <label for="descricao">Descrição: </label>
+            <input type="text" name="descricao" id="descricao" required>
+          </div>
+        </div>
+        <div class="row justify-content-start" id="cd-tipovl">
+          <div class="col-3">
+            <p>Tipo de Conta: </p>
+          </div>
+          <div class="col-3">
             <input type="radio" name="tipoConta" id="despesa" value="D">
             <label for="despesa">Despesa</label>
           </div>
-          <div>
+          <div class="col-3">
             <input type="radio" name="tipoConta" id="receita" value="R">
             <label for="receita">Receita</label>
           </div>
         </div>
-        <div>
-          <label for="valor">Valor:</label>
-          <input name="valor" id="valor" required>
+        <div class="row justify-content-start">
+          <div class="col">
+            <label for="valor">Valor: R$ </label>
+            <input name="valor" id="valor" required>
+          </div>
         </div>
-      </div>
-      <div id="cd-vencimento">
-        <label for="vencimento">Vencimento:</label>
-        <input type="date" name="vencimento" id="vencimento" required>
-      </div>
-      <div id="cd-btnCadastrar">
+        <div class="row justify-content-start" id="cd-vencimento">
+          <div class="col">
+            <label for="vencimento">Vencimento: </label>
+            <input type="date" name="vencimento" id="vencimento" required>
+          </div>
+        </div>
+        <div id="cd-btnConfirmar">
 
-      </div>
-    </form>
+        </div>
+      </form>
+    </div>
   </div>
   <footer class="py-5 pt-5 text-muted text-center text-small">
     <p class="mb-1">2020 - Carlos Eduardo Roza de Oliveira</p>
@@ -159,7 +175,7 @@
 
     var campoData = document.getElementById('mesReferencia');
 
-    campoData.addEventListener("change", function(){
+    campoData.addEventListener("change", function () {
       var mes = campoData.value + '-01';
 
       buscaContasBD(mes);

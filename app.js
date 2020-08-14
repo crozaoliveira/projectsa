@@ -148,10 +148,16 @@ app.post('/update-select/:id', function (req, res) {
     });
 });
 
-app.get('/update/:descricao?/:valor?/:vencimento?/:tipoconta?/:id?', function (req, res) {
+app.get('/update/:descricao?/:valor?/:vencimento?/:tipoconta?/:id?/:pagina?', function (req, res) {
     connection.query("UPDATE contas SET DS_CONTA = ?, VL_CONTA = ?, DT_VENCIMENTO = ?, ID_TIPO = ?, DT_INCLUSAO = SYSDATE()  WHERE NR_CONTA = ?",
         [req.params.descricao, req.params.valor, req.params.vencimento, req.params.tipoconta, req.params.id], function (err, result, field) {
-            res.redirect('/');
+            if (req.params.pagina == 'home') {
+                res.redirect('/');
+            } else if(req.params.pagina == 'receita') {
+                res.redirect('/receita');
+            } else if(req.params.pagina == 'despesa') {
+                res.redirect('/despesa');
+            }
         });
 });
 
@@ -159,8 +165,20 @@ app.get('/delete/:id?', function (req, res) {
     connection.query("UPDATE contas SET IE_DELETADO = 'S', DT_ATUALIZACAO = SYSDATE() WHERE NR_CONTA = ?",
         [req.params.id], function (err, result, field) {
             res.redirect('/');
-            console.log(req.params.id)
-            console.log(result);
+        });
+});
+
+app.get('/delete/receita/:id?', function (req, res) {
+    connection.query("UPDATE contas SET IE_DELETADO = 'S', DT_ATUALIZACAO = SYSDATE() WHERE NR_CONTA = ?",
+        [req.params.id], function (err, result, field) {
+            res.redirect('/receita');
+        });
+});
+
+app.get('/delete/despesa/:id?', function (req, res) {
+    connection.query("UPDATE contas SET IE_DELETADO = 'S', DT_ATUALIZACAO = SYSDATE() WHERE NR_CONTA = ?",
+        [req.params.id], function (err, result, field) {
+            res.redirect('/despesa');
         });
 });
 

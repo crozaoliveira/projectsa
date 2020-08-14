@@ -10,7 +10,7 @@ window.addEventListener('resize', function () {
     sizeOfThings();
 });
 
-function update(nr_conta) {
+function update(nr_conta, pagina) {
     var descricao = document.getElementById('descricao').value;
     var valor = document.getElementById('valor').value;
     var vencimento = document.getElementById('vencimento').value;
@@ -22,9 +22,7 @@ function update(nr_conta) {
         tipoConta = 3;
     }
 
-    console.log('/update/' + descricao + '/' + valor + '/' + vencimento + '/' + tipoConta + '/' + nr_conta);
-
-    window.location.href = '/update/' + descricao + '/' + valor + '/' + vencimento + '/' + tipoConta + '/' + nr_conta;
+    window.location.href = '/update/' + descricao + '/' + valor + '/' + vencimento + '/' + tipoConta + '/' + nr_conta + '/' + pagina;
 };
 
 function openForm() {
@@ -35,11 +33,25 @@ function closeForm() {
     document.getElementById("myForm").style.display = "none";
 }
 
-function deleteById(nr_conta) {
+function deleteById(nr_conta, pagina) {
     if (confirm('Deseja deletar esta conta?')) {
-        window.location.href = '/delete/' + nr_conta;
+        if(pagina == 'H') {
+            window.location.href = '/delete/' + nr_conta;
+        } else if (pagina == 'R') {
+            window.location.href = '/delete/receita/' + nr_conta;
+        } else if (pagina == 'D') {
+            window.location.href = '/delete/despesa/' + nr_conta;
+        }
     }
-    window.location.href = '/';
+
+    if(pagina == 'H') {
+        window.location.href = '/';
+    } else if (pagina == 'R') {
+        window.location.href = '/receita';
+    } else if (pagina == 'D') {
+        window.location.href = '/despesa';
+    }
+    
 };
 
 function setMesReferencia() {
