@@ -1,7 +1,6 @@
 window.onload = function () {
     setMesReferencia()
     buscaContasBD();
-    console.log('Aqui beleza');
 };
 
 function buscaContasBD(mesReferencia) {
@@ -15,7 +14,6 @@ function buscaContasBD(mesReferencia) {
         contas.onreadystatechange = function () {
 
             if (contas.readyState == 4 && contas.status == 200) {
-                console.log(contas.responseText);
 
                 var obj = JSON.parse(contas.responseText);
 
@@ -54,7 +52,6 @@ function buscaContasBD(mesReferencia) {
         contas.onreadystatechange = function () {
 
             if (contas.readyState == 4 && contas.status == 200) {
-                console.log(contas.responseText);
 
                 var obj = JSON.parse(contas.responseText);
 
@@ -103,7 +100,6 @@ function buscaContasBDById(id_conta) {
     conta.onreadystatechange = function () {
 
         if (conta.readyState == 4 && conta.status == 200) {
-            console.log(conta.responseText);
 
             var obj = JSON.parse(conta.responseText);
 

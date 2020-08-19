@@ -1,6 +1,5 @@
 function updatePg(id_conta){
     buscaContasBDById(id_conta);
-    console.log('Aqui beleza');
     openForm();
 };
 
@@ -21,7 +20,6 @@ function buscaContasBDById(id_conta) {
     conta.onreadystatechange = function () {
 
         if (contas.readyState == 4 && contas.status == 200) {
-            console.log(contas.responseText);
 
             var obj = JSON.parse(contas.responseText);
 

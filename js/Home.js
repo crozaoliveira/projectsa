@@ -1,7 +1,6 @@
 window.onload = function () {
     setMesReferencia()
     buscaContasBD();
-    console.log('Aqui beleza');
 };
 
 function buscaContasBD(mesReferencia) {
@@ -9,14 +8,12 @@ function buscaContasBD(mesReferencia) {
     if (mesReferencia) {
 
         var urlConta = '/home/contas/' + mesReferencia;
-        console.log(urlConta);
 
         var contas = new XMLHttpRequest();
         contas.open('POST', urlConta, true);
         contas.onreadystatechange = function () {
 
             if (contas.readyState == 4 && contas.status == 200) {
-                console.log(contas.responseText);
 
                 var obj = JSON.parse(contas.responseText);
 
@@ -73,7 +70,6 @@ function buscaContasBD(mesReferencia) {
         contas.onreadystatechange = function () {
 
             if (contas.readyState == 4 && contas.status == 200) {
-                console.log(contas.responseText);
 
                 var obj = JSON.parse(contas.responseText);
 
@@ -129,7 +125,6 @@ function buscaContasBD(mesReferencia) {
 
 function updatePg(id_conta) {
     buscaContasBDById(id_conta);
-    console.log('Aqui beleza');
     openForm();
 };
 
@@ -142,7 +137,6 @@ function buscaContasBDById(id_conta) {
     conta.onreadystatechange = function () {
 
         if (conta.readyState == 4 && conta.status == 200) {
-            console.log(conta.responseText);
 
             var obj = JSON.parse(conta.responseText);
 
