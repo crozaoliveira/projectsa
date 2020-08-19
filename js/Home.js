@@ -34,8 +34,8 @@ function buscaContasBD(mesReferencia) {
                             '<td>' + obj[x].DS_CONTA + '</td>' +
                             '<td>R$ ' + format("#,##0.00", obj[x].VL_CONTA) + '</td>' +
                             '<td>' + obj[x].DT_VENCIMENTO + '</td>' +
-                            '<td><a href="#" onclick="updatePg(' + obj[x].NR_CONTA + ')"><span class="badge badge-primary">editar</span></td>' +
-                            '<td><a href="#" onclick="deleteById(' + obj[x].NR_CONTA + ')"><span class="badge badge-danger">excluir</span></td>' +
+                            '<td><a href="#" onclick="updatePg(' + obj[x].NR_CONTA + ', \'H\')"><span class="badge badge-primary">editar</span></td>' +
+                            '<td><a href="#" onclick="deleteById(' + obj[x].NR_CONTA + ', \'H\')"><span class="badge badge-danger">excluir</span></td>' +
                             '</tr>';
 
                         somaDespesa += Number(obj[x].VL_CONTA);
@@ -46,8 +46,8 @@ function buscaContasBD(mesReferencia) {
                             '<td>' + obj[x].DS_CONTA + '</td>' +
                             '<td>R$ ' + format("#,##0.00", obj[x].VL_CONTA) + '</td>' +
                             '<td>' + obj[x].DT_VENCIMENTO + '</td>' +
-                            '<td><a href="#" onclick="updatePg(' + obj[x].NR_CONTA + ')"><span class="badge badge-primary">editar</span></td>' +
-                            '<td><a href="#" onclick="deleteById(' + obj[x].NR_CONTA + ')"><span class="badge badge-danger">excluir</span></td>' +
+                            '<td><a href="#" onclick="updatePg(' + obj[x].NR_CONTA + ', \'H\')"><span class="badge badge-primary">editar</span></td>' +
+                            '<td><a href="#" onclick="deleteById(' + obj[x].NR_CONTA + ', \'H\')"><span class="badge badge-danger">excluir</span></td>' +
                             '</tr>';
 
                         somaReceita += Number(obj[x].VL_CONTA);

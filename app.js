@@ -5,8 +5,8 @@ const mysql = require('mysql');
 const app = express();
 
 const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
+    host: 'webfinance.cidobwi19alq.us-east-1.rds.amazonaws.com',
+    user: 'admin',
     password: '1meuDB2400',
     port: 3306,
     database: 'webfinance'
@@ -66,25 +66,27 @@ app.post('/home/sum/:data?', function (req, res) {
 
 app.post('/home/contas/:data?', function (req, res) {
     if (req.params.data) {
-        connection.query("SELECT NR_CONTA, DS_CONTA, VL_CONTA, DATE_FORMAT(DT_VENCIMENTO, '%d/%m/%Y') AS DT_VENCIMENTO, DATE_FORMAT(DT_INCLUSAO, '%d/%m/%Y') AS DT_INCLUSAO, ID_TIPO FROM CONTAS WHERE IE_ATIVO = 'S' AND IE_DELETADO = 'N' AND MONTH(DT_VENCIMENTO) = MONTH(?) AND YEAR(DT_VENCIMENTO) = YEAR(?)",
+        connection.query("SELECT NR_CONTA, DS_CONTA, VL_CONTA, DATE_FORMAT(DT_VENCIMENTO, '%d/%m/%Y') AS DT_VENCIMENTO, DATE_FORMAT(DT_INCLUSAO, '%d/%m/%Y') AS DT_INCLUSAO, ID_TIPO FROM contas WHERE IE_ATIVO = 'S' AND IE_DELETADO = 'N' AND MONTH(DT_VENCIMENTO) = MONTH(?) AND YEAR(DT_VENCIMENTO) = YEAR(?)",
             [req.params.data, req.params.data], function (err, result, field) {
                 res.json(result);
+                console.log(result);
             });
     } else {
-        connection.query("SELECT NR_CONTA, DS_CONTA, VL_CONTA, DATE_FORMAT(DT_VENCIMENTO, '%d/%m/%Y') AS DT_VENCIMENTO, DATE_FORMAT(DT_INCLUSAO, '%d/%m/%Y') AS DT_INCLUSAO, ID_TIPO FROM CONTAS WHERE IE_ATIVO = 'S' AND IE_DELETADO = 'N' AND MONTH(DT_VENCIMENTO) = MONTH(SYSDATE()) AND YEAR(DT_VENCIMENTO) = YEAR(SYSDATE())", function (err, result, field) {
+        connection.query("SELECT NR_CONTA, DS_CONTA, VL_CONTA, DATE_FORMAT(DT_VENCIMENTO, '%d/%m/%Y') AS DT_VENCIMENTO, DATE_FORMAT(DT_INCLUSAO, '%d/%m/%Y') AS DT_INCLUSAO, ID_TIPO FROM contas WHERE IE_ATIVO = 'S' AND IE_DELETADO = 'N' AND MONTH(DT_VENCIMENTO) = MONTH(SYSDATE()) AND YEAR(DT_VENCIMENTO) = YEAR(SYSDATE())", function (err, result, field) {
             res.json(result);
+            console.log(result);
         });
     }
 });
 
 app.post('/receitas/contas/:data?', function (req, res) {
     if (req.params.data) {
-        connection.query("SELECT NR_CONTA, DS_CONTA, VL_CONTA, DATE_FORMAT(DT_VENCIMENTO, '%d/%m/%Y') AS DT_VENCIMENTO, DATE_FORMAT(DT_INCLUSAO, '%d/%m/%Y') AS DT_INCLUSAO, ID_TIPO FROM CONTAS WHERE IE_ATIVO = 'S' AND IE_DELETADO = 'N' AND MONTH(DT_VENCIMENTO) = MONTH(?) AND YEAR(DT_VENCIMENTO) = YEAR(?) AND ID_TIPO = 3",
+        connection.query("SELECT NR_CONTA, DS_CONTA, VL_CONTA, DATE_FORMAT(DT_VENCIMENTO, '%d/%m/%Y') AS DT_VENCIMENTO, DATE_FORMAT(DT_INCLUSAO, '%d/%m/%Y') AS DT_INCLUSAO, ID_TIPO FROM contas WHERE IE_ATIVO = 'S' AND IE_DELETADO = 'N' AND MONTH(DT_VENCIMENTO) = MONTH(?) AND YEAR(DT_VENCIMENTO) = YEAR(?) AND ID_TIPO = 3",
             [req.params.data, req.params.data], function (err, result, field) {
                 res.json(result);
             });
     } else {
-        connection.query("SELECT NR_CONTA, DS_CONTA, VL_CONTA, DATE_FORMAT(DT_VENCIMENTO, '%d/%m/%Y') AS DT_VENCIMENTO, DATE_FORMAT(DT_INCLUSAO, '%d/%m/%Y') AS DT_INCLUSAO, ID_TIPO FROM CONTAS WHERE IE_ATIVO = 'S' AND IE_DELETADO = 'N' AND MONTH(DT_VENCIMENTO) = MONTH(SYSDATE()) AND YEAR(DT_VENCIMENTO) = YEAR(SYSDATE()) AND ID_TIPO = 3", function (err, result, field) {
+        connection.query("SELECT NR_CONTA, DS_CONTA, VL_CONTA, DATE_FORMAT(DT_VENCIMENTO, '%d/%m/%Y') AS DT_VENCIMENTO, DATE_FORMAT(DT_INCLUSAO, '%d/%m/%Y') AS DT_INCLUSAO, ID_TIPO FROM contas WHERE IE_ATIVO = 'S' AND IE_DELETADO = 'N' AND MONTH(DT_VENCIMENTO) = MONTH(SYSDATE()) AND YEAR(DT_VENCIMENTO) = YEAR(SYSDATE()) AND ID_TIPO = 3", function (err, result, field) {
             res.json(result);
         });
     }
@@ -105,12 +107,12 @@ app.post('/receitas/sum/:data?', function (req, res) {
 
 app.post('/despesas/contas/:data?', function (req, res) {
     if (req.params.data) {
-        connection.query("SELECT NR_CONTA, DS_CONTA, VL_CONTA, DATE_FORMAT(DT_VENCIMENTO, '%d/%m/%Y') AS DT_VENCIMENTO, DATE_FORMAT(DT_INCLUSAO, '%d/%m/%Y') AS DT_INCLUSAO, ID_TIPO FROM CONTAS WHERE IE_ATIVO = 'S' AND IE_DELETADO = 'N' AND MONTH(DT_VENCIMENTO) = MONTH(?) AND YEAR(DT_VENCIMENTO) = YEAR(?) AND ID_TIPO = 2",
+        connection.query("SELECT NR_CONTA, DS_CONTA, VL_CONTA, DATE_FORMAT(DT_VENCIMENTO, '%d/%m/%Y') AS DT_VENCIMENTO, DATE_FORMAT(DT_INCLUSAO, '%d/%m/%Y') AS DT_INCLUSAO, ID_TIPO FROM contas WHERE IE_ATIVO = 'S' AND IE_DELETADO = 'N' AND MONTH(DT_VENCIMENTO) = MONTH(?) AND YEAR(DT_VENCIMENTO) = YEAR(?) AND ID_TIPO = 2",
             [req.params.data, req.params.data], function (err, result, field) {
                 res.json(result);
             });
     } else {
-        connection.query("SELECT NR_CONTA, DS_CONTA, VL_CONTA, DATE_FORMAT(DT_VENCIMENTO, '%d/%m/%Y') AS DT_VENCIMENTO, DATE_FORMAT(DT_INCLUSAO, '%d/%m/%Y') AS DT_INCLUSAO, ID_TIPO FROM CONTAS WHERE IE_ATIVO = 'S' AND IE_DELETADO = 'N' AND MONTH(DT_VENCIMENTO) = MONTH(SYSDATE()) AND YEAR(DT_VENCIMENTO) = YEAR(SYSDATE()) AND ID_TIPO = 2", function (err, result, field) {
+        connection.query("SELECT NR_CONTA, DS_CONTA, VL_CONTA, DATE_FORMAT(DT_VENCIMENTO, '%d/%m/%Y') AS DT_VENCIMENTO, DATE_FORMAT(DT_INCLUSAO, '%d/%m/%Y') AS DT_INCLUSAO, ID_TIPO FROM contas WHERE IE_ATIVO = 'S' AND IE_DELETADO = 'N' AND MONTH(DT_VENCIMENTO) = MONTH(SYSDATE()) AND YEAR(DT_VENCIMENTO) = YEAR(SYSDATE()) AND ID_TIPO = 2", function (err, result, field) {
             res.json(result);
         });
     }
@@ -137,13 +139,13 @@ app.post('/add-cadastro', function (req, res) {
     } else {
         id_conta = 3;
     }
-    connection.query("INSERT INTO CONTAS (DS_CONTA, VL_CONTA, ID_TIPO, DT_VENCIMENTO, DT_INCLUSAO, IE_ATIVO, IE_DELETADO, ID_USUARIO) VALUES (?, ?, ?, ?, SYSDATE(), ?, ?, ?)",
+    connection.query("INSERT INTO contas (DS_CONTA, VL_CONTA, ID_TIPO, DT_VENCIMENTO, DT_INCLUSAO, IE_ATIVO, IE_DELETADO, ID_USUARIO) VALUES (?, ?, ?, ?, SYSDATE(), ?, ?, ?)",
         [req.body.descricao, req.body.valor, id_conta, req.body.vencimento, 'S', 'N', 1]);
     res.redirect('/Cadastro.html');
 });
 
 app.post('/update-select/:id', function (req, res) {
-    connection.query("SELECT NR_CONTA, DS_CONTA, VL_CONTA, DATE_FORMAT(DT_VENCIMENTO, '%Y-%m-%d') AS DT_VENCIMENTO, DATE_FORMAT(DT_INCLUSAO, '%Y-%m-%d') AS DT_INCLUSAO, ID_TIPO FROM CONTAS WHERE nr_conta = ?", [req.params.id], function (err, result, field) {
+    connection.query("SELECT NR_CONTA, DS_CONTA, VL_CONTA, DATE_FORMAT(DT_VENCIMENTO, '%Y-%m-%d') AS DT_VENCIMENTO, DATE_FORMAT(DT_INCLUSAO, '%Y-%m-%d') AS DT_INCLUSAO, ID_TIPO FROM contas WHERE nr_conta = ?", [req.params.id], function (err, result, field) {
         res.json(result);
     });
 });
@@ -188,7 +190,7 @@ app.get('/delete/despesa/:id?', function (req, res) {
 
 // Servidor //
 
-app.listen(8081, function () {
+app.listen(80,function () {
     console.log("Servidor rodando!");
 });
 
